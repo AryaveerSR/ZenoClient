@@ -40,7 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
-          release-name: Windows Release
+          tag_name: TAGG
+          release_name: Windows Release
 
       # Uploading a Release file
       - name: Uploading Release
