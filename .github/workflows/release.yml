@@ -36,6 +36,7 @@ jobs:
       
       # Making a release
       - name: Making Release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
@@ -45,6 +46,7 @@ jobs:
 
       # Uploading a Release file
       - name: Uploading Release
+        id: upload_release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
