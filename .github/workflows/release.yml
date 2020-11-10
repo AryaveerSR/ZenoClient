@@ -91,8 +91,8 @@ jobs:
         id: compressing-asar
         run: |
           cd release-builds
-          brew install tree
-          tree
+          zip -r release.zip zeno-darwin-x64
+
 
       # Uploading a Release file
       - name: Uploading Release
@@ -102,6 +102,6 @@ jobs:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release-builds/Zeno-darwin-x64/release.zip
+          asset_path: ./release-builds/release.zip
           asset_name: release.zip
           asset_content_type: application/zip
