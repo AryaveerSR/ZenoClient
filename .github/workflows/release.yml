@@ -48,7 +48,7 @@ jobs:
       - name: Compressing ASAR
         id: compressing-asar
         run: |
-          zip windows.zip . -i ./release-builds/Zeno-win32-x64/resources/app.asar
+          tree
 
       # Uploading a Release file
       - name: Uploading Release
