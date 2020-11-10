@@ -38,7 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
-          tag_name: linux-v${{ version }}
+          tag_name: linux-v${version}
           release_name: Linux
 
       - name: Uploading Release
@@ -78,7 +78,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
-          tag_name: win32-v${{ version }}
+          tag_name: win32-v${version}
           release_name: Windows
 
       - name: Uploading Release
@@ -118,7 +118,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
-          tag_name: macos-v${{ version }}
+          tag_name: macos-v${version}
           release_name: MacOS
 
       # Making a .zip file for the release folder
