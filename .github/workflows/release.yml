@@ -13,7 +13,7 @@ jobs:
   # This workflow contains a single job called "build"
   windows-build:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -41,8 +41,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
-          tag_name: TAGG
+          tag_name: v18
           release_name: Windows Release
+
+      # Making a .zip file for the release folder
+      - name: Compressing ASAR
+        id: compressing-asar
+        run: |
+          zip -r windows.zip ./release-builds/Zeno-win32-x64/resources/
 
       # Uploading a Release file
       - name: Uploading Release
@@ -52,5 +58,6 @@ jobs:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release-builds/Zeno-win32-x64/resources/app.asar
-          asset_name: app.asar
+          asset_path: ./windows.zip
+          asset_name: windows.zip
+          asset_content_type: application/zip
