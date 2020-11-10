@@ -71,7 +71,7 @@ jobs:
 
       # Building the windows package
       - name: Build Package
-        run: npm run package-windows
+        run: npm run package-win
       
       # Making a release
       - name: Making Release
