@@ -48,6 +48,7 @@ jobs:
       - name: Compressing ASAR
         id: compressing-asar
         run: |
+          sudo apt-get install tree
           tree
 
       # Uploading a Release file
