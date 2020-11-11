@@ -9,61 +9,61 @@ on:
     branches: actions-test
 
 jobs:
-  # linux-build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
+  linux-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       
-  #     # Setting up Node
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: '12.16.1'
+      # Setting up Node
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.16.1'
       
-  #     # Installing Dependencies
-  #     - name: Installing Dependencies
-  #       run: npm ci
+      # Installing Dependencies
+      - name: Installing Dependencies
+        run: npm ci
 
-  #     # Building the linux package
-  #     - name: Build Package
-  #       run: npm run package-linux
+      # Building the linux package
+      - name: Build Package
+        run: npm run package-linux
       
-  #     # Making a release
-  #     - name: Making Release
-  #       id: create_release
-  #       uses: actions/create-release@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
-  #       with:
-  #         tag_name: linux-v18
-  #         release_name: Linux
+      # Making a release
+      - name: Making Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
+        with:
+          tag_name: linux-v18
+          release_name: Linux
 
-  #     - name: Uploading ASAR
-  #       id: upload_asar
-  #       uses: actions/upload-release-asset@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
-  #       with:
-  #         upload_url: ${{ steps.create_release.outputs.upload_url }}
-  #         asset_path: ./release-builds/Zeno-linux-x64/resources/app.asar
-  #         asset_name: app.asar
-  #         asset_content_type: application/octet-stream
+      - name: Uploading ASAR
+        id: upload_asar
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-builds/Zeno-linux-x64/resources/app.asar
+          asset_name: app.asar
+          asset_content_type: application/octet-stream
       
-  #     - name: Compressing Build
-  #       run: |
-  #           cd release-builds
-  #           zip -r linux-v18.zip Zeno-linux-x64
+      - name: Compressing Build
+        run: |
+            cd release-builds
+            zip -r linux-v18.zip Zeno-linux-x64
       
-  #     - name: Uploading ZIP
-  #       id: upload_zip
-  #       uses: actions/upload-release-asset@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
-  #       with:
-  #         upload_url: ${{ steps.create_release.outputs.upload_url }}
-  #         asset_path: ./release-builds/linux-v18.zip
-  #         asset_name: linux-v18
-  #         asset_content_type: application/zip
+      - name: Uploading ZIP
+        id: upload_zip
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-builds/linux-v18.zip
+          asset_name: linux-v18
+          asset_content_type: application/zip
 
         
   
@@ -140,18 +140,6 @@ jobs:
       - name: Installing Dependencies
         run: npm ci
 
-      # Uploading ASAR
-      - name: Uploading ASAR
-        id: upload_asar
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release-builds/zeno-darwin-x64/zeno.app/Contents/Resources/app.asar
-          asset_name: app.asar
-          asset_content_type: application/octet-stream
-
       # Building the mac package
       - name: Build Package
         run: npm run package-mac
@@ -165,6 +153,18 @@ jobs:
         with:
           tag_name: macos-v18
           release_name: MacOS
+
+      # Uploading ASAR
+      - name: Uploading ASAR
+        id: upload_asar
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-builds/zeno-darwin-x64/zeno.app/Contents/Resources/app.asar
+          asset_name: app.asar
+          asset_content_type: application/octet-stream
 
       # Making a .zip file for the release folder
       - name: Compressing Build
