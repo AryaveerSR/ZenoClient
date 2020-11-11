@@ -61,7 +61,7 @@ jobs:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./linux-v18.zip
+          asset_path: ./release-builds/linux-v18.zip
           asset_name: linux-v18
           asset_content_type: application/zip
 
